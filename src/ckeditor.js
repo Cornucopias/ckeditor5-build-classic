@@ -2,39 +2,50 @@
  * @license Copyright (c) 2014-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor.js';
-import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment.js';
-import AutoImage from '@ckeditor/ckeditor5-image/src/autoimage.js';
-import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat.js';
-import AutoLink from '@ckeditor/ckeditor5-link/src/autolink.js';
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote.js';
-import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold.js';
-import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
-import GeneralHtmlSupport from '@ckeditor/ckeditor5-html-support/src/generalhtmlsupport.js';
-import Heading from '@ckeditor/ckeditor5-heading/src/heading.js';
-import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline.js';
-import Image from '@ckeditor/ckeditor5-image/src/image.js';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption.js';
-import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert.js';
-import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize.js';
-import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle.js';
-import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar.js';
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload.js';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent.js';
-import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic.js';
-import Link from '@ckeditor/ckeditor5-link/src/link.js';
-import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage.js';
-import List from '@ckeditor/ckeditor5-list/src/list.js';
-import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed.js';
-import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
-import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js';
-import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting.js';
-import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript.js';
-import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript.js';
-import Table from '@ckeditor/ckeditor5-table/src/table.js';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
-import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
-import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
+import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
+import { Alignment } from "@ckeditor/ckeditor5-alignment";
+import { Autoformat } from "@ckeditor/ckeditor5-autoformat";
+import {
+	Bold,
+	Italic,
+	Subscript,
+	Superscript,
+	Underline,
+} from "@ckeditor/ckeditor5-basic-styles";
+import { BlockQuote } from "@ckeditor/ckeditor5-block-quote";
+import { Essentials } from "@ckeditor/ckeditor5-essentials";
+import { Font } from "@ckeditor/ckeditor5-font";
+import { GeneralHtmlSupport } from "@ckeditor/ckeditor5-html-support";
+import { Heading } from "@ckeditor/ckeditor5-heading";
+import { Highlight } from "@ckeditor/ckeditor5-highlight";
+import { HorizontalLine } from "@ckeditor/ckeditor5-horizontal-line";
+import {
+	AutoImage,
+	Image,
+	ImageCaption,
+	ImageInsert,
+	ImageResize,
+	ImageStyle,
+	ImageToolbar,
+	ImageUpload,
+} from "@ckeditor/ckeditor5-image";
+import { Indent, IndentBlock } from "@ckeditor/ckeditor5-indent";
+import { AutoLink, Link, LinkImage } from "@ckeditor/ckeditor5-link";
+import { DocumentList, DocumentListProperties } from "@ckeditor/ckeditor5-list";
+import { MediaEmbed } from "@ckeditor/ckeditor5-media-embed";
+import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
+import { PasteFromOffice } from "@ckeditor/ckeditor5-paste-from-office";
+import { SourceEditing } from "@ckeditor/ckeditor5-source-editing";
+import { Style } from "@ckeditor/ckeditor5-style";
+import {
+	Table,
+	TableCaption,
+	TableCellProperties,
+	TableColumnResize,
+	TableProperties,
+	TableToolbar,
+} from "@ckeditor/ckeditor5-table";
+import { TextTransformation } from "@ckeditor/ckeditor5-typing";
 
 class Editor extends ClassicEditor {}
 
@@ -47,8 +58,10 @@ Editor.builtinPlugins = [
 	BlockQuote,
 	Bold,
 	Essentials,
+	Font,
 	GeneralHtmlSupport,
 	Heading,
+	Highlight,
 	HorizontalLine,
 	Image,
 	ImageCaption,
@@ -61,66 +74,149 @@ Editor.builtinPlugins = [
 	Italic,
 	Link,
 	LinkImage,
-	List,
+	DocumentList,
+	DocumentListProperties,
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
 	SourceEditing,
+	Style,
 	Subscript,
 	Superscript,
 	Table,
 	TableToolbar,
+	TableCaption,
+	TableCellProperties,
+	TableColumnResize,
+	TableProperties,
 	TextTransformation,
-	Underline
+	Underline,
 ];
 
 // Editor configuration.
 Editor.defaultConfig = {
 	toolbar: {
 		items: [
-			'heading',
-			'|',
-			'bold',
-			'italic',
-			'underline',
-			'subscript',
-			'superscript',
-			'link',
-			'bulletedList',
-			'numberedList',
-			'|',
-			'alignment',
-			'outdent',
-			'indent',
-			'|',
-			'insertTable',
-			'horizontalLine',
-			'blockQuote',
-			'imageInsert',
-			'mediaEmbed',
-			'undo',
-			'redo',
-			'sourceEditing'
-		]
+			"heading",
+			"|",
+			"fontSize",
+			"fontColor",
+			"fontBackgroundColor",
+			"|",
+			"bold",
+			"italic",
+			"underline",
+			{
+				label: "Formatting",
+				icon: "text",
+				items: [
+					"strikethrough",
+					"subscript",
+					"superscript",
+					"code",
+					"horizontalLine",
+					"|",
+					"removeFormat",
+				],
+			},
+			"link",
+			"bulletedList",
+			"numberedList",
+			"|",
+			"alignment",
+			"outdent",
+			"indent",
+			"|",
+			{
+				label: "Insert",
+				icon: "plus",
+				items: ["highlight", "blockQuote", "mediaEmbed", "codeBlock"],
+			},
+			"insertTable",
+			"imageInsert",
+			"|",
+			"undo",
+			"redo",
+		],
+		shouldNotGroupWhenFull: true,
 	},
-	language: 'en',
+	language: "en",
 	image: {
 		toolbar: [
-			'imageTextAlternative',
-			'toggleImageCaption',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
-			'linkImage'
-		]
+			"imageTextAlternative",
+			"toggleImageCaption",
+			"imageStyle:inline",
+			"imageStyle:block",
+			"imageStyle:side",
+			"linkImage",
+		],
+	},
+	list: {
+		properties: {
+			styles: true,
+			startIndex: true,
+			reversed: true,
+		},
 	},
 	table: {
 		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
-	}
+			"tableColumn",
+			"tableRow",
+			"mergeTableCells",
+			"tableProperties",
+			"tableCellProperties",
+			"toggleTableCaption",
+		],
+	},
+	style: {
+		definitions: [
+			{
+				name: "Article category",
+				element: "h3",
+				classes: ["category"],
+			},
+			{
+				name: "Title",
+				element: "h2",
+				classes: ["document-title"],
+			},
+			{
+				name: "Subtitle",
+				element: "h3",
+				classes: ["document-subtitle"],
+			},
+			{
+				name: "Info box",
+				element: "p",
+				classes: ["info-box"],
+			},
+			{
+				name: "Side quote",
+				element: "blockquote",
+				classes: ["side-quote"],
+			},
+			{
+				name: "Marker",
+				element: "span",
+				classes: ["marker"],
+			},
+			{
+				name: "Spoiler",
+				element: "span",
+				classes: ["spoiler"],
+			},
+			{
+				name: "Code (dark)",
+				element: "pre",
+				classes: ["fancy-code", "fancy-code-dark"],
+			},
+			{
+				name: "Code (bright)",
+				element: "pre",
+				classes: ["fancy-code", "fancy-code-bright"],
+			},
+		],
+	},
 };
 
 export default Editor;
